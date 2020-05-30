@@ -12,13 +12,17 @@
         android:id="@+id/task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/et_style"
+        android:layout_margin="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:hint="Enter Task"/>
     <EditText
         android:id="@+id/disc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:lines="4"
+        android:layout_height="match_parent"
         android:gravity="top"
+        android:layout_margin="8dp"
         android:hint="Enter Task Description"
         />
 

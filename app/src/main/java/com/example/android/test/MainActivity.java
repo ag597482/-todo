@@ -23,6 +23,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -73,9 +75,26 @@ public class MainActivity extends AppCompatActivity implements
 //        mTodoHelper=new TodoHelper(this);
 //        displayDatabaseInfo();
 
+
         todolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                CheckBox cb= (CheckBox)view.findViewById(R.id.name);
+
+//                cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                    public void onCheckedChanged(CompoundButton cb, boolean isChecked) {
+//                        if(cb.isChecked()) {
+//                            Toast.makeText(MainActivity.this,"checked"+position,Toast.LENGTH_SHORT).show();
+//                            // action
+//                        }
+//                        else if(isChecked==false) {
+//
+//                            Toast.makeText(MainActivity.this,"checked"+position,Toast.LENGTH_SHORT).show();
+//                            // action
+//                        }
+//                    }
+//                });
 
                 Intent intent = new Intent(MainActivity.this,EnterItem.class);
 

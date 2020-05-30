@@ -65,7 +65,6 @@ public class EnterItem extends AppCompatActivity implements
             invalidateOptionsMenu();
         } else {
             setTitle(getString(R.string.editor_activity_title_edit_pet));
-
             getLoaderManager().initLoader(EXISTING_PET_LOADER, null, this);
         }
 
