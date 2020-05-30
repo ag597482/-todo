@@ -26,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -56,21 +57,58 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        FloatingActionButton done = (FloatingActionButton) findViewById(R.id.done);
-        done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"No Tasks Selected",Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        ListView todolist = (ListView)findViewById(R.id.list);
+        final ListView todolist = (ListView)findViewById(R.id.list);
 
         View emptyview = (View)findViewById(R.id.emptyView);
         todolist.setEmptyView(emptyview);
 
+
         mCursorAdapter=new ItemAdapter(this,null);
         todolist.setAdapter(mCursorAdapter);
+
+        FloatingActionButton done = (FloatingActionButton) findViewById(R.id.done);
+        done.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                int cou=0;
+                for(int i=0;i<todolist.getChildCount();i++)
+                {
+                    Object o1=todolist.getChildAt(i);
+                    if(o1 instanceof LinearLayout)
+                    {
+                        Object c1=((LinearLayout) o1).getChildAt(0);
+                        if(((CheckBox) c1).isChecked())
+                        {
+                            cou++;
+                            Uri currentUri = ContentUris.withAppendedId(ItemEntry.CONTENT_URI,todolist.getItemIdAtPosition(i));
+                            int rowsDeleted = getContentResolver().delete(currentUri, null, null);
+                        }
+                    }
+
+                }
+                if(cou==0)
+                {
+                    Toast.makeText(MainActivity.this,"No Task Selected",Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+                    Toast.makeText(MainActivity.this, cou+ " Tasks Completed", Toast.LENGTH_SHORT).show();
+                }
+
+                //  Toast.makeText(MainActivity.this,"No Tasks Selected"+todolist.getChildCount()+" "+cou,Toast.LENGTH_SHORT).show();
+            }
+        });
+//        if(todolist.getChildCount()==0)
+//        {
+//            done.setVisibility(View.INVISIBLE);
+//        }
+//        else
+//        {
+//            done.setVisibility(View.VISIBLE);
+//        }
+
 
 //        mTodoHelper=new TodoHelper(this);
 //        displayDatabaseInfo();

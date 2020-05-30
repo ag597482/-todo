@@ -96,11 +96,11 @@ public class EnterItem extends AppCompatActivity implements
 
             if (newUri == null) {
                 // If the new content URI is null, then there was an error with insertion.
-                Toast.makeText(this, getString(R.string.editor_insert_pet_failed),
+                Toast.makeText(this, "Error while saving task",
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Otherwise, the insertion was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.editor_insert_pet_successful),
+                Toast.makeText(this, "Task Added",
                         Toast.LENGTH_SHORT).show();
             }
         } else {
@@ -227,14 +227,14 @@ public class EnterItem extends AppCompatActivity implements
         // Create an AlertDialog.Builder and set the message, and click listeners
         // for the postivie and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("R.string.delete_dialog_msg");
-        builder.setPositiveButton("R.string.delete", new DialogInterface.OnClickListener() {
+        builder.setMessage("Do want to delete this task");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Delete" button, so delete the pet.
                 deletePet();
             }
         });
-        builder.setNegativeButton("R.string.cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Cancel" button, so dismiss the dialog
                 // and continue editing the pet.

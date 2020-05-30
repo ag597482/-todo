@@ -8,10 +8,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.android.test.EnterItem;
+import com.example.android.test.MainActivity;
 import com.example.android.test.data.TodoContract.ItemEntry;
 
 
@@ -81,6 +84,7 @@ public class TodoProvider extends ContentProvider {
 
         String name = values.getAsString(TodoContract.ItemEntry.COLUMN_TASK_NAME);
         if (name == null) {
+            //Toast.makeText(this,"Task Can't be Empty",Toast.LENGTH_SHORT).show();
             throw new IllegalArgumentException("Task requires a name");
         }
 
