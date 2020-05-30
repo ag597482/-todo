@@ -14,7 +14,8 @@ public class ItemAdapter extends CursorAdapter {
 
 
 
-    public ItemAdapter(Context context, Cursor c) {
+    public ItemAdapter(Context context, Cursor c)
+    {
         super(context, c, 0 /* flags */);
     }
 

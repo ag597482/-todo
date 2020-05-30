@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements
             // Respond to a click on the "Save" menu option
             case R.id.action_dummy:
                 insertPet();
+
                 return true;
             case R.id.action_delete:
                 deleteAllPets();

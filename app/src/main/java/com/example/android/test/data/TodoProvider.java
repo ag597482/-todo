@@ -39,6 +39,7 @@ public class TodoProvider extends ContentProvider {
 
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
+
         SQLiteDatabase database = mTodoHelper.getReadableDatabase();
 
         Cursor cursor;
@@ -46,7 +47,7 @@ public class TodoProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         switch (match) {
             case TASK:
-                cursor =database.query(ItemEntry.TABLE_NAME,projection,selection,selectionArgs,null,null,sortOrder);
+                cursor = database.query(ItemEntry.TABLE_NAME,projection,selection,selectionArgs,null,null,sortOrder);
                 break;
             case TASK_ID:
                 selection = ItemEntry._ID + "=?";
@@ -58,6 +59,8 @@ public class TodoProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+
         return cursor;
     }
 
